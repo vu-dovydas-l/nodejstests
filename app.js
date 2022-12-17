@@ -5,6 +5,7 @@ const passport = require('passport');
 const routes = require('./routes/routes');
 const config = require('./config/config')
 const facebookLogin = require('./API/facebookLogin');
+const googleLogin = require('./API/googleLogin');
 
 app.set('view engine', 'ejs');
 

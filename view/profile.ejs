@@ -12,12 +12,22 @@
         <div class="col s12">
           <div class="card">
             <div class="card-content blue lighten-3">
-              <span class="card-title white-text"><strong><i class="large material-icons">person</i>
-                </strong></span>
+              <span class="card-title white-text">
+                <% if (user.picture) { %>
+                  <img src="<%= user.picture %>" alt="Image">
+                <%} else{ %>
+                  <strong><i class="large material-icons">person</i></strong>
+                <% } %>
+              </span>
             </div>
             <div class="card-action">
-              <h5><b><%= user.displayName %></b></h5>
-              <p><strong>Facebook id</strong>: <%= user.id %></p>
+              <% if (user.provider && user.provider == 'google') { %>
+                <h5><b><%= user.email %></b></h5>
+                <p><strong>Google id</strong>: <%= user.id %></p>
+              <%} else{ %>
+                <h5><b><%= user.displayName %></b></h5>
+                <p><strong>Facebook id</strong>: <%= user.id %></p>
+              <% } %>
             </div>
           </div>
         </div>
