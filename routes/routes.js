@@ -1,6 +1,7 @@
 const passport = require("passport");
 const express = require("express");
 const mealDB = require("../API/mealDB");
+const calorieNinjas = require("../API/calorieNinjas");
 var router = express.Router();
 
 router.get("/", function (req, res) {
@@ -52,12 +53,27 @@ router.get("/meal/search", async (req, res) => {
     res.render("../view/nothing.ejs");
   await mealDB.search(req.query.q, mealDB.SEARCH_BY_TEXT).then((response) => {
     if (response.success) {
-      res.render("../view/meal.ejs", {
+      res.render("../view/search.ejs", {
         meal: response.data,
       });
     } else {
       res.render("../view/nothing.ejs");
     }
+  });
+});
+
+router.get("/meal/nutrition", async (req, res) => {
+  if (req.query.q === undefined || req.query.q === null)
+    res.render("../view/nothing.ejs");
+  await calorieNinjas.getNutritions(req.query.q).then((response) => {
+    console.log(response);
+    // if (response.success) {
+    //   res.render("../view/meal.ejs", {
+    //     meal: response.data,
+    //   });
+    // } else {
+    //   res.render("../view/nothing.ejs");
+    // }
   });
 });
 

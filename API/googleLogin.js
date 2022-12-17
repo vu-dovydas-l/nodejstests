@@ -1,5 +1,5 @@
 const passport = require('passport');
-const config = require('../config/config')
+const config = require('../config/config');
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 
